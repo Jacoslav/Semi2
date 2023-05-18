@@ -1,0 +1,23 @@
+Toster, ale taki dojebany
+
+ZJ
+
+Co muszę zrobić:
+
+----
+1.tło i label z instrukcjami + button "Dalej" 
+2."Dalej" odpala funkcję Learning(), która:
+	-pokazuje nazwę gestu (LOSOWO) *
+	-czeka kilka sekund 
+	- pokazuje odpowiedni filmik z gestem (musi byc jakies dopasowanie nazwa-filmik)
+	-loopuje az skoncza sie gesty
+3. Pokazuje label z instrukcja o pokazywaniu gestow i ze bedzie najpierw proba + button
+	-button odpada funkcję Gestures() ale tylko testowe dane (tzn zmyslone nazwy)
+	-
+4. pokazuje label z kolejna instrukcja (ze zaraz trzeba bedzie powtarzac gesty) +button
+5. Button odpala funkcję Gestures(), która:
+	-pokazuje nazwe gestu (losowo) *
+	-czeka kilka sekund(np.5s) i pokazuje to odliczanie na ekranie
+	-pokazuje (moze byc label) kropke [w tym czasie osoba pokazuje gest, i jak konczy to kladzie rece na stole]
+	-loopuje sie dopiero jak ktos kliknie <coś> myszką, i tak do konca az skoncza sie gesty
+6.Pokazuje label *the end thank u <333*

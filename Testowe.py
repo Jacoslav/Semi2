@@ -14,20 +14,14 @@ import time
 from PIL import Image, ImageTk
 
 texts = ["Chwytanie obiektu", "Duplikowanie obiektu", "kierowanie wiązką", "klikniecie pewne",
-         "klikniecie przycisku","like/serduszko","Następny element","Następny slajd","Obracanie"
-         ,"Odesłanie na pierwotną pozycję","Odznaczenie opcji","otwarcie lewego panelu","otwarcie prawego panelu",
-         "otwórz witulaną tablicę","otwórz tablice timeline","Pauza","Poprzednia Scena","Poprzedni element",
-         "Przewijanie do dołu","Przewijanie w lewo","Przwijanie w prawo","Przwijanie do góry","Przyciąganie odleglego obiektu",
-         "skalowanie","tapniecie przycisku","tworzenie dodatkowego obietku","usuniecie awatarów","usuwanie obiektu",
-         "wyciszenie miktrofonu","wyciszenie wszystkich uczestników", "zamkniecie_panelu","zdalne usuniecie zaznaczenia",
-         "zdalne zaznacznie"]
-# texts = ["Chwytanie obiektu","Skalowanie obiektu","Obracanie obiektu"
-#       ,"Kierowanie wiązką","Zdalne tapnięcie","Zdalne usunięcie zaznaczenia",
-#       "Kliknięcie przycisku","Odznaczanie opcji","Kliknięcie przycisku (pewne)",
-#         "Otwarcie lewego panelu","Otwarcie prawego panelu","Zamknięcie panelu","Pauza","Wyciszenie mikrofonu","Wyciszenie wszystkich \n uczestników",
-#       'Usunięcie wszystkich awatarów',"Otwórz wirtualną tablicę","Otwórz panel timeline","Następny próg ","Poprzedni próg","Następna scena ","Poprzednia scena"
-#       ,"Tworzenie/dodanie obiektu","Przyciąganie odległego obiektu","Odesłanie obiektu \n na pierwotną pozycję","Usuwanie obiektu ","Usuwanie obiektu ","Przewijanie zawartości w lewo,",
-#       "Przewijanie zawartości w prawo","Przewijanie zawartości w górę ","Przewijanie zawartości w dół"]
+        "klikniecie przycisku","like/serduszko","Następny element","Następny slajd","Obracanie"
+        ,"Odesłanie na pierwotną pozycję","Odznaczenie opcji","otwarcie lewego panelu","otwarcie prawego panelu",
+        "otwórz witulaną tablicę","otwórz tablice timeline","Pauza","Poprzednia Scena","Poprzedni element",
+        "Przewijanie do dołu","Przewijanie w lewo","Przwijanie w prawo","Przwijanie do góry","Przyciąganie odleglego obiektu",
+        "skalowanie","tapniecie przycisku","tworzenie dodatkowego obietku","usuniecie awatarów","usuwanie obiektu",
+        "wyciszenie miktrofonu","wyciszenie wszystkich uczestników", "zamkniecie_panelu","zdalne usuniecie zaznaczenia",
+        "zdalne zaznacznie"]
+
 
 folder="wilmy_test"
 
@@ -231,12 +225,12 @@ plik=nazwa_pliku
 
 
 list_to_show=["Chwytanie obiektu","Skalowanie obiektu","Obracanie obiektu"
-      ,"Kierowanie wiązką","Zdalne tapnięcie","Zdalne usunięcie zaznaczenia",
-      "Kliknięcie przycisku","Odznaczanie opcji","Kliknięcie przycisku (pewne)",
-        "Otwarcie lewego panelu","Otwarcie prawego panelu","Zamknięcie panelu","Pauza","Wyciszenie mikrofonu","Wyciszenie wszystkich \n uczestników",
-      'Usunięcie wszystkich awatarów',"Otwórz wirtualną tablicę","Otwórz panel timeline","Następny próg ","Poprzedni próg","Następna scena ","Poprzednia scena"
-      ,"Tworzenie/dodanie obiektu","Przyciąganie odległego obiektu","Odesłanie obiektu \n na pierwotną pozycję","Usuwanie obiektu ","Usuwanie obiektu ","Przewijanie zawartości w lewo,",
+     ,"Kierowanie wiązką","Zdalne tapnięcie","Zdalne usunięcie zaznaczenia",
+     "Kliknięcie przycisku","Odznaczanie opcji","Kliknięcie przycisku (pewne)",
+     'Usunięcie wszystkich awatarów',"Otwórz wirtualną tablicę","Otwórz panel timeline","Następny próg ","Poprzedni próg","Następna scena ","Poprzednia scena"
+     ,"Tworzenie/dodanie obiektu","Przyciąganie odległego obiektu","Odesłanie obiektu \n na pierwotną pozycję","Usuwanie obiektu ","Usuwanie obiektu ","Przewijanie zawartości w lewo,",
       "Przewijanie zawartości w prawo","Przewijanie zawartości w górę ","Przewijanie zawartości w dół"]
+
 
 lista_gestow=[]
 
@@ -265,15 +259,19 @@ def get_new_time():
         # file.write(current_time-new_time)
 
 def gest():
-    x = random.randrange(0, len(list_to_show))
-    przechowaj = list_to_show[x]
-    list_to_show.pop(x)
 
-    lista_gestow.append(przechowaj)
+        x = random.randrange(0, len(list_to_show))
 
-    with open(nazwa_pliku, "a") as file:
-        file.write(przechowaj+",") # pierwsza kolumna pliku danych: nazwa gestu
-    return przechowaj
+        przechowaj = list_to_show[x]
+        list_to_show.pop(x)
+
+        lista_gestow.append(przechowaj)
+
+        with open(nazwa_pliku, "a") as file:
+            file.write(przechowaj+",") # pierwsza kolumna pliku danych: nazwa gestu
+        return przechowaj
+
+
 
 
 def start_countdown():
@@ -328,11 +326,16 @@ def countdown(counter):
 
     else:
         button.config(state=tk.NORMAL)
-        a=gest()
-        fake_label.config(text=a)
+        try:
+            a=gest()
+            fake_label.config(text=a)
 
-        fake_label.config(image="")
-        get_new_time()
+            fake_label.config(image="")
+            get_new_time()
+        except:
+            root.destroy()
+
+
 
 
 
@@ -377,6 +380,20 @@ root.mainloop()
 
 
 
+# Utworzenie głównego okna
+window = tk.Tk()
+
+# Ramka (frame) z podziękowaniem
+frame = tk.Frame(window)
+frame.pack()
+
+# Etykieta z podziękowaniem
+thank_you_label = tk.Label(window, text="Dziękujemy za udział w badaniu!", font=("Arial", 16))
+thank_you_label.pack()
+
+
+# Uruchomienie pętli głównego okna
+window.mainloop()
 
 
 
